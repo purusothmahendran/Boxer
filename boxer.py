@@ -78,8 +78,8 @@ for tweet_keyword in harvest_list: # for each keyword, do some shit
         '"""+str(batch_id)+"""',
         '"""+str(tweet_keyword)+"""',
         getdate(),
-        ((select count(*) from tweetbank where tweet_keyword = '"""+str(tweet_keyword)+"""')-(select top 1 isnull(TotalHarvested) from tweetlog where keyword = '"""+str(tweet_keyword)+"""' order by RunDate desc)),
-        (select count(*) from tweetbank where tweet_keyword = '"""+str(tweet_keyword)+"""')
+        
+((select count(*) from tweetbank where tweet_keyword = '"""+str(tweet_keyword)+"""')-(select isnull(TotalHarvested) from tweetlog where keyword = '"""+str(tweet_keyword)+"""' order by RunDate desc limit 1)), (select count(*) from tweetbank where tweet_keyword = '"""+str(tweet_keyword)+"""')
         )""")
         # add a record to the log table saying what we did!
 
