@@ -1,4 +1,3 @@
-
 from twython import Twython
 import string, json, pprint
 import urllib
@@ -73,14 +72,14 @@ for tweet_keyword in harvest_list: # for each keyword, do some shit
         # take all THESE out of the temp table to not
         # interfere with the next keyword
 
-        cur.execute("""insert into tweetlog (BatchId, keyword, RunDate, HarvestedThisRun, TotalHarvested) values
-        (
-        '"""+str(batch_id)+"""',
-        '"""+str(tweet_keyword)+"""',
-        getdate(),
+       # cur.execute("""insert into tweetlog (BatchId, keyword, RunDate, HarvestedThisRun, TotalHarvested) values
+        #(
+        #'"""+str(batch_id)+"""',
+       # '"""+str(tweet_keyword)+"""',
+       # getdate(),
         
-((select count(*) from tweetbank where tweet_keyword = '"""+str(tweet_keyword)+"""')-(select isnull(TotalHarvested) from tweetlog where keyword = '"""+str(tweet_keyword)+"""' order by RunDate desc limit 1)), (select count(*) from tweetbank where tweet_keyword = '"""+str(tweet_keyword)+"""')
-        )""")
+#((select count(*) from tweetbank where tweet_keyword = '"""+str(tweet_keyword)+"""')-(select isnull(TotalHarvested) from tweetlog where keyword = '"""+str(tweet_keyword)+"""' order by RunDate desc limit 1)), (select count(*) from tweetbank where tweet_keyword = '"""+str(tweet_keyword)+"""')
+      #  )""")
         # add a record to the log table saying what we did!
 
         conn.commit()
